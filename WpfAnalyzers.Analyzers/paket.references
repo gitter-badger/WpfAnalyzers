@@ -1,0 +1,5 @@
+AsyncUsageAnalyzers
+Microsoft.CodeAnalysis.CSharp
+Microsoft.Composition
+Newtonsoft.Json
+StyleCop.Analyzers
