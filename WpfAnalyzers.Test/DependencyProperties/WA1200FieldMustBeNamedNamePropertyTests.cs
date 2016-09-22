@@ -33,7 +33,7 @@
         }
 
         [Test]
-        public async Task TestInternalReadonlyFieldStartingWithLowerCaseAsync()
+        public async Task PropertyNotNamedNameProperty()
         {
             var testCode = @"
     using System.Windows;

@@ -1,5 +1,6 @@
 ﻿namespace WpfAnalyzers.DependencyProperties
 {
+    using System;
     using System.Collections.Immutable;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
@@ -44,29 +45,30 @@
 
         private static void HandleFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
-            var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
-            CheckElementNameToken(context, propertyDeclaration.Identifier);
+            var fieldSymbol = (IFieldSymbol)context.ContainingSymbol;
+            if (fieldSymbol.Type.Name != "DependencyProperty")
+            {
+                return;
+            }
+
+            //if (contextContainingSymbol)
+            //{
+            //    return;
+            //}
         }
 
-        private static void CheckElementNameToken(SyntaxNodeAnalysisContext context, SyntaxToken identifier)
+        private static void CheckElementNameToken(SyntaxNodeAnalysisContext context, VariableDeclarationSyntax variable)
         {
-            if (identifier.IsMissing)
-            {
-                return;
-            }
 
-            if (string.IsNullOrEmpty(identifier.ValueText))
-            {
-                return;
-            }
 
-            var symbolInfo = context.SemanticModel.GetDeclaredSymbol(identifier.Parent);
-            if (symbolInfo != null)
-            {
-                return;
-            }
+            throw new NotImplementedException();
+            //var symbolInfo = context.SemanticModel.GetDeclaredSymbol(variable.Parent);
+            //if (symbolInfo != null)
+            //{
+            //    return;
+            //}
 
-            context.ReportDiagnostic(Diagnostic.Create(Descriptor, identifier.GetLocation(), identifier.ValueText));
+            //context.ReportDiagnostic(Diagnostic.Create(Descriptor, variable.GetLocation(), variable.ValueText));
         }
     }
 }
