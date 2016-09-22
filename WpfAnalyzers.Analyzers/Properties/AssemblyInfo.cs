@@ -39,5 +39,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.1.0.0")]
 [assembly: AssemblyInformationalVersion("1.0.0-dev")]
 
-[assembly: InternalsVisibleTo("WpfAnalyzers.Analyzers.CodeFixes")]
+[assembly: InternalsVisibleTo("WpfAnalyzers.CodeFixes")]
 [assembly: InternalsVisibleTo("WpfAnalyzers.Test")]
