@@ -1,4 +1,4 @@
-AsyncUsageAnalyzers
 Microsoft.CodeAnalysis.CSharp.Workspaces
-Newtonsoft.Json
+group Analyzers
 StyleCop.Analyzers
+AsyncUsageAnalyzers

@@ -14,8 +14,6 @@ namespace WpfAnalyzers.Test
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.Formatting;
     using Microsoft.CodeAnalysis.Text;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// Class for turning strings into documents and getting the diagnostics on them.

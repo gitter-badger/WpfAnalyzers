@@ -1,5 +1,5 @@
-AsyncUsageAnalyzers
 Microsoft.CodeAnalysis.CSharp
 Microsoft.Composition
-Newtonsoft.Json
+group Analyzers
 StyleCop.Analyzers
+AsyncUsageAnalyzers

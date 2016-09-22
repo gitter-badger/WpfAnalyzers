@@ -1,6 +1,5 @@
 NUGET
   remote: http://api.nuget.org/v3/index.json
-    AsyncUsageAnalyzers (1.0.0-alpha003)
     Microsoft.CodeAnalysis.Analyzers (1.1)
     Microsoft.CodeAnalysis.Common (1.2.1)
       Microsoft.CodeAnalysis.Analyzers (>= 1.1)
@@ -17,8 +16,6 @@ NUGET
     Microsoft.Composition (1.0.30)
     Microsoft.NETCore.Platforms (1.0.1) - framework: >= netstandard10
     Microsoft.NETCore.Targets (1.0.1) - framework: >= netstandard10
-    Newtonsoft.Json (7.0.1)
-    StyleCop.Analyzers (1.0)
     System.Collections (4.0.11) - framework: >= netstandard10
       Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, >= netstandard13
       Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, >= netstandard13
@@ -124,16 +121,27 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.0.1) - framework: dnxcore50, netstandard10, >= netstandard13
       Microsoft.NETCore.Targets (>= 1.0.1) - framework: dnxcore50, netstandard10, >= netstandard13
       System.Runtime (>= 4.1) - framework: dnxcore50, netstandard10, >= netstandard13
-    xunit (2.2.0-beta1-build3239) - framework: >= net452
+
+GROUP Analyzers
+NUGET
+  remote: http://api.nuget.org/v3/index.json
+    AsyncUsageAnalyzers (1.0.0-alpha003)
+    StyleCop.Analyzers (1.0)
+
+GROUP Test
+FRAMEWORK: NET452
+NUGET
+  remote: http://api.nuget.org/v3/index.json
+    xunit (2.2.0-beta1-build3239)
       xunit.assert (2.2.0-beta1-build3239)
       xunit.core (2.2.0-beta1-build3239)
-    xunit.abstractions (2.0) - framework: >= net452
-    xunit.assert (2.2.0-beta1-build3239) - framework: >= net452
-    xunit.core (2.2.0-beta1-build3239) - framework: >= net452
-      xunit.extensibility.core (2.2.0-beta1-build3239) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0, wpav8.1
-      xunit.extensibility.execution (2.2.0-beta1-build3239) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0, wpav8.1
-    xunit.extensibility.core (2.2.0-beta1-build3239) - framework: >= net452
+    xunit.abstractions (2.0)
+    xunit.assert (2.2.0-beta1-build3239)
+    xunit.core (2.2.0-beta1-build3239)
+      xunit.extensibility.core (2.2.0-beta1-build3239)
+      xunit.extensibility.execution (2.2.0-beta1-build3239)
+    xunit.extensibility.core (2.2.0-beta1-build3239)
       xunit.abstractions (2.0)
-    xunit.extensibility.execution (2.2.0-beta1-build3239) - framework: >= net452
-      xunit.extensibility.core (2.2.0-beta1-build3239) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, xamarinios, winv4.5, wpv8.0, wpav8.1
-    xunit.runner.visualstudio (2.2.0-beta1-build1144) - framework: >= net452
+    xunit.extensibility.execution (2.2.0-beta1-build3239)
+      xunit.extensibility.core (2.2.0-beta1-build3239)
+    xunit.runner.visualstudio (2.2.0-beta1-build1144)
