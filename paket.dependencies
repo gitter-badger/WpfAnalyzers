@@ -1,6 +1,6 @@
 source https://api.nuget.org/v3/index.json
-framework: net46
-nuget Microsoft.CodeAnalysis.CSharp.Workspaces 2.0.0-beta3
+framework: net45
+nuget Microsoft.CodeAnalysis.CSharp.Workspaces
 
 group Analyzers
   source https://api.nuget.org/v3/index.json
@@ -9,5 +9,5 @@ group Analyzers
 
 group Test
   source https://api.nuget.org/v3/index.json
-  nuget xunit 2.2.0-beta2-build3300
-  nuget xunit.runner.visualstudio 2.2.0-beta2-build1149
+  framework: net45
+  nuget NUnit

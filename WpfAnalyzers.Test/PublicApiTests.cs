@@ -5,8 +5,7 @@ namespace WpfAnalyzers.Test
 {
     using System;
     using System.Text;
-    using WpfAnalyzers.Analyzers;
-    using Xunit;
+    using NUnit.Framework;
 
     /// <summary>
     /// Unit tests related to the public API surface of StyleCop.Analyzers.dll.
@@ -16,7 +15,7 @@ namespace WpfAnalyzers.Test
         /// <summary>
         /// This test ensures all types in StyleCop.Analyzers.dll are marked internal.
         /// </summary>
-        [Fact]
+        [Test]
         public void TestAllTypesAreInternal()
         {
             StringBuilder publicTypes = new StringBuilder();
@@ -30,7 +29,7 @@ namespace WpfAnalyzers.Test
                 publicTypes.Append(type.Name);
             }
 
-            Assert.Equal(string.Empty, publicTypes.ToString());
+            Assert.AreEqual(string.Empty, publicTypes.ToString());
         }
     }
 }

@@ -117,6 +117,10 @@ namespace WpfAnalyzers.Test
                 .AddMetadataReference(projectId, MetadataReferences.CorlibReference)
                 .AddMetadataReference(projectId, MetadataReferences.SystemReference)
                 .AddMetadataReference(projectId, MetadataReferences.SystemCoreReference)
+                .AddMetadataReference(projectId, MetadataReferences.PresentationCoreReference)
+                .AddMetadataReference(projectId, MetadataReferences.PresentationFrameworkReference)
+                .AddMetadataReference(projectId, MetadataReferences.WindowsBaseReference)
+                .AddMetadataReference(projectId, MetadataReferences.SystemXamlReference)
                 .AddMetadataReference(projectId, MetadataReferences.CSharpSymbolsReference)
                 .AddMetadataReference(projectId, MetadataReferences.CodeAnalysisReference);
 
@@ -128,34 +132,34 @@ namespace WpfAnalyzers.Test
 
             //var settings = this.GetSettings();
 
-//            StyleCopSettings defaultSettings = new StyleCopSettings();
-//            if (this.IndentationSize != defaultSettings.Indentation.IndentationSize
-//                || this.UseTabs != defaultSettings.Indentation.UseTabs
-//                || this.TabSize != defaultSettings.Indentation.TabSize)
-//            {
-//                var indentationSettings = $@"
-//{{
-//  ""settings"": {{
-//    ""indentation"": {{
-//      ""indentationSize"": {this.IndentationSize},
-//      ""useTabs"": {this.UseTabs.ToString().ToLowerInvariant()},
-//      ""tabSize"": {this.TabSize}
-//    }}
-//  }}
-//}}
-//";
+            //            StyleCopSettings defaultSettings = new StyleCopSettings();
+            //            if (this.IndentationSize != defaultSettings.Indentation.IndentationSize
+            //                || this.UseTabs != defaultSettings.Indentation.UseTabs
+            //                || this.TabSize != defaultSettings.Indentation.TabSize)
+            //            {
+            //                var indentationSettings = $@"
+            //{{
+            //  ""settings"": {{
+            //    ""indentation"": {{
+            //      ""indentationSize"": {this.IndentationSize},
+            //      ""useTabs"": {this.UseTabs.ToString().ToLowerInvariant()},
+            //      ""tabSize"": {this.TabSize}
+            //    }}
+            //  }}
+            //}}
+            //";
 
-//                if (string.IsNullOrEmpty(settings))
-//                {
-//                    settings = indentationSettings;
-//                }
-//                else
-//                {
-//                    JObject mergedSettings = JsonConvert.DeserializeObject<JObject>(settings);
-//                    mergedSettings.Merge(JsonConvert.DeserializeObject<JObject>(indentationSettings));
-//                    settings = JsonConvert.SerializeObject(mergedSettings);
-//                }
-//            }
+            //                if (string.IsNullOrEmpty(settings))
+            //                {
+            //                    settings = indentationSettings;
+            //                }
+            //                else
+            //                {
+            //                    JObject mergedSettings = JsonConvert.DeserializeObject<JObject>(settings);
+            //                    mergedSettings.Merge(JsonConvert.DeserializeObject<JObject>(indentationSettings));
+            //                    settings = JsonConvert.SerializeObject(mergedSettings);
+            //                }
+            //            }
 
             //if (!string.IsNullOrEmpty(settings))
             //{

@@ -1,20 +1,16 @@
-﻿// Copyright (c) Tunnel Vision Laboratories, LLC. All Rights Reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-namespace WpfAnalyzers.Test.DependencyProperties
+﻿namespace WpfAnalyzers.Test.DependencyProperties
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.CodeAnalysis.CodeFixes;
     using Microsoft.CodeAnalysis.Diagnostics;
-    using WpfAnalyzers.Analyzers.DependencyProperties;
-    using Xunit;
+    using NUnit.Framework;
+    using WpfAnalyzers.DependencyProperties;
 
     public class WA1200FieldMustBeNamedNamePropertyUnitTests : CodeFixVerifier
     {
-        [Fact]
+        [Test]
         public async Task HappyPath()
         {
             var testCode = @"
@@ -36,7 +32,7 @@ namespace WpfAnalyzers.Test.DependencyProperties
             await this.VerifyCSharpDiagnosticAsync(testCode, EmptyDiagnosticResults, CancellationToken.None).ConfigureAwait(false);
         }
 
-        [Fact]
+        [Test]
         public async Task TestInternalReadonlyFieldStartingWithLowerCaseAsync()
         {
             var testCode = @"

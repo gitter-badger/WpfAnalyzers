@@ -14,7 +14,7 @@ namespace WpfAnalyzers.Test
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.Formatting;
     using Microsoft.CodeAnalysis.Text;
-    using Xunit;
+    using NUnit.Framework;
 
     /// <summary>
     /// Superclass of all unit tests for <see cref="DiagnosticAnalyzer"/>s.
@@ -76,7 +76,7 @@ namespace WpfAnalyzers.Test
         /// Verifies that the analyzer will properly handle an empty source.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous unit test.</returns>
-        [Fact]
+        [Test]
         public async Task TestEmptySourceAsync()
         {
             var testCode = string.Empty;
@@ -87,7 +87,7 @@ namespace WpfAnalyzers.Test
         /// Verifies that each diagnostics contains a <see cref="DiagnosticDescriptor.HelpLinkUri"/> in the expected
         /// format.
         /// </summary>
-        [Fact]
+        [Test]
         public void TestHelpLink()
         {
             foreach (var diagnosticAnalyzer in this.GetCSharpDiagnosticAnalyzers())
@@ -101,7 +101,7 @@ namespace WpfAnalyzers.Test
                     }
 
                     string expected = $"https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/{diagnostic.Id}.md";
-                    Assert.Equal(expected, diagnostic.HelpLinkUri);
+                    Assert.AreEqual(expected, diagnostic.HelpLinkUri);
                 }
             }
         }

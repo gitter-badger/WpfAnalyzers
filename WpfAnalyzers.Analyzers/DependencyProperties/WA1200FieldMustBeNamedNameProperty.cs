@@ -1,4 +1,4 @@
-﻿namespace WpfAnalyzers.Analyzers.DependencyProperties
+﻿namespace WpfAnalyzers.DependencyProperties
 {
     using System.Collections.Immutable;
     using Microsoft.CodeAnalysis;

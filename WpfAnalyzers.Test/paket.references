@@ -3,5 +3,4 @@ group Analyzers
 StyleCop.Analyzers
 AsyncUsageAnalyzers
 group Test
-xunit
-xunit.runner.visualstudio
+NUnit

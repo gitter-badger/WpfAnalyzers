@@ -15,7 +15,7 @@ namespace WpfAnalyzers.Test
     using Microsoft.CodeAnalysis.CodeActions;
     using Microsoft.CodeAnalysis.CodeFixes;
     using Microsoft.CodeAnalysis.Diagnostics;
-    using Xunit;
+    using NUnit.Framework;
 
     /// <summary>
     /// Superclass of all unit tests made for diagnostics with code fixes.
@@ -71,7 +71,7 @@ namespace WpfAnalyzers.Test
             var t1 = this.VerifyFixInternalAsync(LanguageNames.CSharp, this.GetCSharpDiagnosticAnalyzers().ToImmutableArray(), this.GetCSharpCodeFixProvider(), oldSources, newSources, codeFixIndex, allowNewCompilerDiagnostics, numberOfIncrementalIterations, FixEachAnalyzerDiagnosticAsync, cancellationToken).ConfigureAwait(false);
 
             var fixAllProvider = this.GetCSharpCodeFixProvider().GetFixAllProvider();
-            Assert.NotEqual(WellKnownFixAllProviders.BatchFixer, fixAllProvider);
+            Assert.AreNotEqual(WellKnownFixAllProviders.BatchFixer, fixAllProvider);
 
             if (fixAllProvider == null)
             {
@@ -202,7 +202,7 @@ namespace WpfAnalyzers.Test
 
             if (expectedNumberOfIterations >= 0)
             {
-                Assert.Equal($"{expectedNumberOfIterations} iterations", $"{expectedNumberOfIterations - numberOfIterations} iterations");
+                Assert.AreEqual($"{expectedNumberOfIterations} iterations", $"{expectedNumberOfIterations - numberOfIterations} iterations");
             }
 
             return project;
@@ -315,7 +315,7 @@ namespace WpfAnalyzers.Test
 
             if (expectedNumberOfIterations >= 0)
             {
-                Assert.Equal($"{expectedNumberOfIterations} iterations", $"{expectedNumberOfIterations - numberOfIterations} iterations");
+                Assert.AreEqual($"{expectedNumberOfIterations} iterations", $"{expectedNumberOfIterations - numberOfIterations} iterations");
             }
 
             return project;
@@ -382,12 +382,12 @@ namespace WpfAnalyzers.Test
             // After applying all of the code fixes, compare the resulting string to the inputted one
             var updatedDocuments = project.Documents.ToArray();
 
-            Assert.Equal($"{newSources.Length} documents", $"{updatedDocuments.Length} documents");
+            Assert.AreEqual($"{newSources.Length} documents", $"{updatedDocuments.Length} documents");
 
             for (int i = 0; i < updatedDocuments.Length; i++)
             {
                 var actual = await GetStringFromDocumentAsync(updatedDocuments[i], cancellationToken).ConfigureAwait(false);
-                Assert.Equal(newSources[i], actual);
+                Assert.AreEqual(newSources[i], actual);
             }
         }
 

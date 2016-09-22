@@ -3,25 +3,24 @@
 
 namespace WpfAnalyzers.Test
 {
-    using WpfAnalyzers.Analyzers;
-    using Xunit;
+    using NUnit.Framework;
 
     public class AttributeTests
     {
-        [Fact]
+        [Test]
         public void TestNoCodeFixAttributeReason()
         {
             string reason = "Reason";
             var attribute = new NoCodeFixAttribute(reason);
-            Assert.Same(reason, attribute.Reason);
+            Assert.AreSame(reason, attribute.Reason);
         }
 
-        [Fact]
+        [Test]
         public void TestNoDiagnosticAttributeReason()
         {
             string reason = "Reason";
             var attribute = new NoDiagnosticAttribute(reason);
-            Assert.Same(reason, attribute.Reason);
+            Assert.AreSame(reason, attribute.Reason);
         }
     }
 }
