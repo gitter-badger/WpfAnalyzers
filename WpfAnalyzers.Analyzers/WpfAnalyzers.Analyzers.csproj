@@ -38,8 +38,8 @@
     <Compile Include="AnalyzerCategory.cs" />
     <Compile Include="AnalyzerConstants.cs" />
     <Compile Include="DependencyProperties\Helpers\FieldSymbolExt.cs" />
-    <Compile Include="DependencyProperties\WA1200FieldMustBeNamedNameProperty.cs" />
-    <Compile Include="DependencyProperties\WA1201FieldMustBeStaticReadonly.cs" />
+    <Compile Include="DependencyProperties\WA1200DependencyPropertyFieldMustBeNamedNameProperty.cs" />
+    <Compile Include="DependencyProperties\WA1201DependencyPropertyFieldMustBeStaticReadOnly.cs" />
     <Compile Include="NoCodeFixAttribute.cs" />
     <Compile Include="NoDiagnosticAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
