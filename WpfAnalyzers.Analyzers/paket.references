@@ -1,5 +1,6 @@
 Microsoft.CodeAnalysis.CSharp
 Microsoft.Composition
-group Analyzers
-StyleCop.Analyzers
-AsyncUsageAnalyzers
+Microsoft.CodeAnalysis.Analyzers
+Microsoft.CodeAnalysis.Common
+System.Collections.Immutable
+
