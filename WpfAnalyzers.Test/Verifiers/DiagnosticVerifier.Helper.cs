@@ -130,43 +130,6 @@ namespace WpfAnalyzers.Test
                 .WithChangedOption(FormattingOptions.TabSize, language, this.TabSize)
                 .WithChangedOption(FormattingOptions.UseTabs, language, this.UseTabs);
 
-            //var settings = this.GetSettings();
-
-            //            StyleCopSettings defaultSettings = new StyleCopSettings();
-            //            if (this.IndentationSize != defaultSettings.Indentation.IndentationSize
-            //                || this.UseTabs != defaultSettings.Indentation.UseTabs
-            //                || this.TabSize != defaultSettings.Indentation.TabSize)
-            //            {
-            //                var indentationSettings = $@"
-            //{{
-            //  ""settings"": {{
-            //    ""indentation"": {{
-            //      ""indentationSize"": {this.IndentationSize},
-            //      ""useTabs"": {this.UseTabs.ToString().ToLowerInvariant()},
-            //      ""tabSize"": {this.TabSize}
-            //    }}
-            //  }}
-            //}}
-            //";
-
-            //                if (string.IsNullOrEmpty(settings))
-            //                {
-            //                    settings = indentationSettings;
-            //                }
-            //                else
-            //                {
-            //                    JObject mergedSettings = JsonConvert.DeserializeObject<JObject>(settings);
-            //                    mergedSettings.Merge(JsonConvert.DeserializeObject<JObject>(indentationSettings));
-            //                    settings = JsonConvert.SerializeObject(mergedSettings);
-            //                }
-            //            }
-
-            //if (!string.IsNullOrEmpty(settings))
-            //{
-            //    var documentId = DocumentId.CreateNewId(projectId);
-            //    solution = solution.AddAdditionalDocument(documentId, SettingsHelper.SettingsFileName, settings);
-            //}
-
             ParseOptions parseOptions = solution.GetProject(projectId).ParseOptions;
             return solution.WithProjectParseOptions(projectId, parseOptions.WithDocumentationMode(DocumentationMode.Diagnose));
         }
@@ -178,15 +141,6 @@ namespace WpfAnalyzers.Test
         protected virtual IEnumerable<string> GetDisabledDiagnostics()
         {
             return Enumerable.Empty<string>();
-        }
-
-        /// <summary>
-        /// Gets the content of the settings file to use.
-        /// </summary>
-        /// <returns>The contents of the settings file to use.</returns>
-        protected virtual string GetSettings()
-        {
-            return null;
         }
 
         protected DiagnosticResult CSharpDiagnostic(string diagnosticId = null)

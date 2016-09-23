@@ -19,7 +19,7 @@
     internal class RenameDependencyPropertyFieldCodeFixProvider : CodeFixProvider
     {
         /// <inheritdoc/>
-        public override ImmutableArray<string> FixableDiagnosticIds { get; } = ImmutableArray.Create(WA1200FieldMustBeNamedNameProperty.DiagnosticId);
+        public override ImmutableArray<string> FixableDiagnosticIds { get; } = ImmutableArray.Create(WA1200DependencyPropertyFieldMustBeNamedNameProperty.DiagnosticId);
 
         /// <inheritdoc/>
         public override FixAllProvider GetFixAllProvider()
@@ -31,9 +31,9 @@
         /// <inheritdoc/>
         public override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
+            var document = context.Document;
+            var root = await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
             throw new NotImplementedException();
-            //var document = context.Document;
-            //var root = await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
             //foreach (var diagnostic in context.Diagnostics)
             //{
@@ -82,7 +82,6 @@
             //            cancellationToken => RenameHelper.RenameSymbolAsync(document, root, token, newName, cancellationToken),
             //            nameof(RenameDependencyPropertyFieldCodeFixProvider) + "_" + underscoreCount + "_" + index),
             //        diagnostic);
-            }
         }
     }
-//}
+}

@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributeTests.cs" />
+    <Compile Include="DependencyProperties\Helpers\FieldSymbolExtTests.cs" />
+    <Compile Include="DependencyProperties\WA1201FieldMustBeStaticReadonlyTests.cs" />
     <Compile Include="Kasta.cs" />
     <Compile Include="DependencyProperties\WA1200FieldMustBeNamedNamePropertyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +86,7 @@
       <Name>WpfAnalyzers.CodeFixes</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll">
       <Paket>True</Paket>
@@ -246,5 +249,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\.paket\paket.targets" />
 </Project>

@@ -19,6 +19,11 @@ NUGET
     System.Reflection.Metadata (1.2)
       System.Collections.Immutable (>= 1.1.37)
 
+GROUP Analyzers
+NUGET
+  remote: http://www.nuget.org/api/v2
+    StyleCop.Analyzers (1.0)
+
 GROUP Test
 NUGET
   remote: http://www.nuget.org/api/v2

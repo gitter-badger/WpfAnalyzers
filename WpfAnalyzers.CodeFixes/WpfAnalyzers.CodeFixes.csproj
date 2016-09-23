@@ -35,6 +35,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyProperties\Helpers\SyntaxTokenListExt.cs" />
+    <Compile Include="FinishedTasks.cs" />
+    <Compile Include="DependencyProperties\MakeFieldStaticReadonlyCodeFixProvider.cs" />
     <Compile Include="DependencyProperties\RenameDependencyPropertyFieldCodeFixProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +59,7 @@
       <Name>WpfAnalyzers.Analyzers</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll">
       <Paket>True</Paket>
@@ -166,5 +170,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\.paket\paket.targets" />
 </Project>
