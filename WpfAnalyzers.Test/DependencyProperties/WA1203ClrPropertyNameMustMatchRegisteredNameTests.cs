@@ -8,7 +8,7 @@
     using NUnit.Framework;
     using WpfAnalyzers.DependencyProperties;
 
-    public class WA1200FieldNameMustMatchRegisteredNameTests : CodeFixVerifier
+    public class WA1203ClrPropertyNameMustMatchRegisteredNameTests : CodeFixVerifier
     {
         [TestCase("\"Bar\"")]
         [TestCase("nameof(Bar)")]
@@ -68,9 +68,9 @@
     public class FooControl : Control
     {
         public static readonly DependencyProperty BarProperty = DependencyProperty.Register(
-            ""Error"", typeof(int), typeof(FooControl), new PropertyMetadata(default(int)));
+            ""Bar"", typeof(int), typeof(FooControl), new PropertyMetadata(default(int)));
 
-        public int Bar
+        public int Error
         {
             get { return (int) GetValue(BarProperty); }
             set { SetValue(BarProperty, value); }
@@ -87,11 +87,11 @@
     public class FooControl : Control
     {
         public static readonly DependencyProperty ErrorProperty = DependencyProperty.Register(
-            ""Error"", typeof(int), typeof(FooControl), new PropertyMetadata(default(int)));
+            ""Bar"", typeof(int), typeof(FooControl), new PropertyMetadata(default(int)));
 
         public int Bar
         {
-            get { return (int) GetValue(ErrorProperty); }
+            get { return (int)GetValue(ErrorProperty); }
             set { SetValue(ErrorProperty, value); }
         }
     }";
@@ -100,12 +100,12 @@
 
         protected override IEnumerable<DiagnosticAnalyzer> GetCSharpDiagnosticAnalyzers()
         {
-            yield return new WA1200FieldNameMustMatchRegisteredName();
+            yield return new WA1203ClrPropertyNameMustMatchRegisteredName();
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
-            return new RenameFieldCodeFixProvider();
+            return null;
         }
     }
 }
