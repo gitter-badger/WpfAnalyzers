@@ -2,6 +2,8 @@
 {
     using System;
     using System.Linq;
+
+    using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -65,16 +67,39 @@
             return null;
         }
 
-        internal static string DependencyPropertyRegisteredDefaultValue(this FieldDeclarationSyntax declaration)
+        //internal static string DependencyPropertyRegisteredDefaultValue(this FieldDeclarationSyntax declaration, SemanticModel semanticModel)
+        //{
+        //    MemberAccessExpressionSyntax invocation;
+        //    if (!TryGetRegisterInvocation(declaration, out invocation))
+        //    {
+        //        return null;
+        //    }
+
+        //    var metaDataCreation = (invocation.Parent as InvocationExpressionSyntax)
+        //        ?.ArgumentList
+        //        ?.Arguments
+        //        .FirstOrDefault(a => IsCreateMetaDataExpression(a, semanticModel))
+        //        ?.Expression as ObjectCreationExpressionSyntax;
+
+        //    if (metaDataCreation == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    throw new NotImplementedException();
+        //}
+
+        private static bool IsCreateMetaDataExpression(ArgumentSyntax argument, SemanticModel semanticModel)
         {
-            MemberAccessExpressionSyntax invocation;
-            if (!TryGetRegisterInvocation(declaration, out invocation))
+            var creation = argument?.Expression as ObjectCreationExpressionSyntax;
+            if (creation == null)
             {
-                return null;
+                return false;
             }
 
-            var args = (invocation.Parent as InvocationExpressionSyntax)?.ArgumentList;
-            throw new NotImplementedException();
+            var typeInfo = semanticModel.GetTypeInfo(creation);
+            var conversion = semanticModel.ClassifyConversion(creation.Type, typeInfo.Type);
+            return conversion.Exists;
         }
 
         private static bool TryGetRegisterInvocation(FieldDeclarationSyntax declaration, out MemberAccessExpressionSyntax invocation)
