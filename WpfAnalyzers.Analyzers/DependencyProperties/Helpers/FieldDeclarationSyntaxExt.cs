@@ -74,7 +74,7 @@
             }
 
             var args = (invocation.Parent as InvocationExpressionSyntax)?.ArgumentList;
-            args?.Arguments.FirstOrDefault(x=>x.)
+            throw new NotImplementedException();
         }
 
         private static bool TryGetRegisterInvocation(FieldDeclarationSyntax declaration, out MemberAccessExpressionSyntax invocation)
