@@ -1,6 +1,7 @@
 ﻿namespace WpfAnalyzers.DependencyProperties
 {
     using System.Collections.Immutable;
+    using System.Linq;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -33,10 +34,10 @@
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
             context.EnableConcurrentExecution();
-            context.RegisterSyntaxNodeAction(HandleFieldDeclaration, SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(HandleDeclaration, SyntaxKind.PropertyDeclaration);
         }
 
-        private static void HandleFieldDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleDeclaration(SyntaxNodeAnalysisContext context)
         {
             var propertyDeclaration = context.Node as PropertyDeclarationSyntax;
             if (propertyDeclaration == null || propertyDeclaration.IsMissing)
@@ -44,8 +45,11 @@
                 return;
             }
 
-            var getter = propertyDeclaration.GetAccessorDeclaration();
-            getter.DescendantNodes(x => x.IsKind(SyntaxKind.InvocationExpression));
+            IdentifierNameSyntax dependencyProperty;
+            if (propertyDeclaration.TryGetDependencyPropertyFromGetter(out dependencyProperty))
+            {
+                var fieldDeclaration = dependencyProperty.SyntaxTree;
+            }
         }
     }
 }

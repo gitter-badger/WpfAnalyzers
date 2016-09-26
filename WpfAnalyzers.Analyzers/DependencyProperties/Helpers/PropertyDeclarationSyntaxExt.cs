@@ -1,5 +1,6 @@
 ﻿namespace WpfAnalyzers.DependencyProperties
 {
+    using System.Linq;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -42,6 +43,28 @@
             }
 
             return null;
+        }
+
+        internal static bool TryGetDependencyPropertyFromGetter(
+            this PropertyDeclarationSyntax propertyDeclaration,
+            out IdentifierNameSyntax dependencyProperty)
+        {
+            var getter = propertyDeclaration.GetAccessorDeclaration();
+            foreach (var invocation in getter.DescendantNodes().OfType<InvocationExpressionSyntax>())
+            {
+                if ((invocation?.Expression as IdentifierNameSyntax)?.Identifier.Text == "GetValue")
+                {
+                    var arguments = invocation.ArgumentList?.Arguments;
+                    if (arguments?.Count == 1)
+                    {
+                        dependencyProperty = arguments.Value[0].Expression as IdentifierNameSyntax;
+                        return dependencyProperty != null;
+                    }
+                }
+            }
+
+            dependencyProperty = null;
+            return false;
         }
     }
 }
