@@ -51,8 +51,18 @@
                 return;
             }
 
-            var type = fieldDeclaration.DependencyPropertyRegisteredType();
             var defaultValue = fieldDeclaration.DependencyPropertyRegisteredDefaultValue();
+            if (defaultValue == null)
+            {
+                return;
+            }
+
+            var type = fieldDeclaration.DependencyPropertyRegisteredType();
+            if (type == null)
+            {
+                return;
+            }
+
             throw new NotImplementedException();
         }
     }

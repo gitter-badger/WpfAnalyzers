@@ -28,21 +28,15 @@
                 return result;
             }
 
-            var nameOfInvocation = nameArg.Expression as InvocationExpressionSyntax;
-            if (nameOfInvocation?.IsNameOfInvocation() == true)
+            if ((nameArg.Expression as InvocationExpressionSyntax)?.TryGetNameOfResult(out result) == true)
             {
-                var argument = nameOfInvocation.ArgumentList.Arguments[0];
-                var identifierName = argument.Expression as IdentifierNameSyntax;
-                if (identifierName != null)
-                {
-                    return identifierName.Identifier.Text;
-                }
+                return result;
             }
 
             return null;
         }
 
-        internal static string DependencyPropertyRegisteredType(this FieldDeclarationSyntax declaration)
+        internal static TypeSyntax DependencyPropertyRegisteredType(this FieldDeclarationSyntax declaration)
         {
             MemberAccessExpressionSyntax invocation;
             if (!TryGetRegisterInvocation(declaration, out invocation))
@@ -50,12 +44,37 @@
                 return null;
             }
 
-            throw new NotImplementedException();
+            var args = (invocation.Parent as InvocationExpressionSyntax)?.ArgumentList;
+            if (args == null || args.Arguments.Count < 2)
+            {
+                return null;
+            }
+
+            var typeArg = args.Arguments[1];
+            if (typeArg == null)
+            {
+                return null;
+            }
+
+            TypeSyntax result;
+            if (typeArg.Expression.TryGetTypeOfResult(out result))
+            {
+                return result;
+            }
+
+            return null;
         }
 
         internal static string DependencyPropertyRegisteredDefaultValue(this FieldDeclarationSyntax declaration)
         {
-            throw new NotImplementedException();
+            MemberAccessExpressionSyntax invocation;
+            if (!TryGetRegisterInvocation(declaration, out invocation))
+            {
+                return null;
+            }
+
+            var args = (invocation.Parent as InvocationExpressionSyntax)?.ArgumentList;
+            args?.Arguments.FirstOrDefault(x=>x.)
         }
 
         private static bool TryGetRegisterInvocation(FieldDeclarationSyntax declaration, out MemberAccessExpressionSyntax invocation)
@@ -79,20 +98,6 @@
 
             result = literal.Token.ValueText;
             return true;
-        }
-    }
-
-    internal static class InvocationExpressionSyntaxExt
-    {
-        internal static bool IsNameOfInvocation(this InvocationExpressionSyntax invocation)
-        {
-            if (invocation == null)
-            {
-                return false;
-            }
-
-            var identifier = invocation.Expression as IdentifierNameSyntax;
-            return identifier?.Identifier.ValueText == "nameof";
         }
     }
 }
