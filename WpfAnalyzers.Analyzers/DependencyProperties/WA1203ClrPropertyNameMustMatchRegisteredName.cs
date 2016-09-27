@@ -1,7 +1,6 @@
 ﻿namespace WpfAnalyzers.DependencyProperties
 {
     using System.Collections.Immutable;
-    using System.Linq;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -45,10 +44,17 @@
                 return;
             }
 
-            IdentifierNameSyntax dependencyProperty;
-            if (propertyDeclaration.TryGetDependencyPropertyFromGetter(out dependencyProperty))
+            var registeredName = propertyDeclaration.DependencyPropertyRegisteredName();
+            var propertyName = propertyDeclaration.Name();
+            if (registeredName == null || propertyName == null)
             {
-                var fieldDeclaration = dependencyProperty.SyntaxTree;
+                return;
+            }
+
+            if (registeredName != propertyName)
+            {
+                var identifier = propertyDeclaration.Identifier;
+                context.ReportDiagnostic(Diagnostic.Create(Descriptor, identifier.GetLocation(), propertyName, registeredName));
             }
         }
     }

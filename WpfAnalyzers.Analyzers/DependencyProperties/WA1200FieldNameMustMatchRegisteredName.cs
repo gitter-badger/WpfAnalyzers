@@ -38,14 +38,8 @@
 
         private static void HandleFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
-            var fieldSymbol = (IFieldSymbol)context.ContainingSymbol;
-            if (!fieldSymbol.IsDependencyPropertyField())
-            {
-                return;
-            }
-
             var fieldDeclaration = context.Node as FieldDeclarationSyntax;
-            if (fieldDeclaration == null || fieldDeclaration.IsMissing)
+            if (fieldDeclaration == null || fieldDeclaration.IsMissing || !fieldDeclaration.IsDependencyPropertyType())
             {
                 return;
             }
@@ -56,10 +50,11 @@
                 return;
             }
 
-            if (!IsMatch(fieldSymbol.Name, registeredName))
+            var fieldName = fieldDeclaration.Name();
+            if (!IsMatch(fieldName, registeredName))
             {
                 var identifier = fieldDeclaration.Declaration.Variables.First().Identifier;
-                context.ReportDiagnostic(Diagnostic.Create(Descriptor, identifier.GetLocation(), fieldSymbol.Name, registeredName));
+                context.ReportDiagnostic(Diagnostic.Create(Descriptor, identifier.GetLocation(), fieldName, registeredName));
             }
         }
 
